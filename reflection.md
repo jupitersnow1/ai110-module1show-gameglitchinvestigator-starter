@@ -32,7 +32,7 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
   ### 8. The Guess message hint is misleading II
   While testing the game, I used the Developer Debug Info feature displayed below the hint message. The debug panel revealed the secret number for the session (for example, Secret: 47). I then entered 50 as my guess, but the hint message responded with “Go HIGHER!”, even though the correct direction should be lower to reach 47. I also noticed the guess history displayed in the debug panel did not record my first guess immediately. The first input only appeared in the history after I submitted a second guess, suggesting the guess tracking may be delayed or not updating on the first entry. 
-  
+
   ### 9. Possible Difficulty Range Incosistency 
   While exploring the difficulty levels, I noticed that Easy uses a range of 1 to 20, Normal uses 1 to 100, and Hard uses 1 to 50. This ordering seemed unusual because the ranges do not progressively increase with difficulty. I initially expected something like Easy: 1–20, Normal: 1–50, and Hard: 1–100 so that the guessing range becomes larger as the difficulty increases. Because of this, I was unsure whether the current configuration is intentional or if the ranges may be incorrectly assigned. This may not necessarily be a bug, but it stood out while testing the different difficulty settings.
 
@@ -40,7 +40,9 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+  I used Claude Code. 
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
 ---

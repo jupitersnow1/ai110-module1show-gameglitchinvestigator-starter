@@ -44,8 +44,9 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
+# FIXME: This might be causing the misleading hint message (bug 1)
 st.info(
-    f"Guess a number between 1 and 100. "
+    f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
 
@@ -65,8 +66,10 @@ col1, col2, col3 = st.columns(3)
 with col1:
     submit = st.button("Submit Guess 🚀")
 with col2:
+    #FIXME: New Game button, does it actually generate a new session? (bug 4)
     new_game = st.button("New Game 🔁")
 with col3:
+    # FIXME: This looks like enables the hint check box (bug 2)
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
