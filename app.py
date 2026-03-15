@@ -1,6 +1,6 @@
 import random
 import streamlit as st
-from logic_utils import check_guess, parse_guess, get_range_for_difficulty, update_score
+from logic_utils import check_guess, parse_guess, get_range_for_difficulty, update_score, get_attempt_limit
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
@@ -21,13 +21,8 @@ difficulty = st.sidebar.selectbox(
     ["Easy", "Normal", "Hard"],
     index=1,
 )
-
-attempt_limit_map = {
-    "Easy": 6,
-    "Normal": 8,
-    "Hard": 5,
-}
-attempt_limit = attempt_limit_map[difficulty]
+# refactored the attempt map from earlier into logic_util file
+attempt_limit = get_attempt_limit(difficulty)
 
 low, high = get_range_for_difficulty(difficulty)
 

@@ -64,3 +64,7 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score - 5
 
     return current_score
+
+def get_attempt_limit(difficulty: str) -> int:
+    limits = {"Easy":6, "Normal":8, "Hard":5}
+    return limits.get(difficulty, 8)
