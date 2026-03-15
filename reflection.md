@@ -12,31 +12,28 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   ### 1. The Guess hint message is misleading. 
   While testing the guessing feature, I noticed the message below the input says, “Guess a number between 1 and 100.” I decided to test whether the program would accept values outside this range by entering negative numbers. The application accepted -1 and generated the hint “Go LOWER!”, which seemed misleading since the guess was already outside the stated range. I also tested -100 and received the same hint, and when I entered 199, the game responded with “Go HIGHER!”. This suggests the hint logic may not be validating whether the users guess is within the intended range before generating guidance.
 
-  ### 2. The Show hint check box
-  I noticed there is a Show Hint checkbox located below the input where the user submits their guess. To test its functionality, I unchecked the tick from the box to see if the hint message would disappear. However, the hint still appeared below the “Make a guess” message even after the checkbox was unchecked. From what I observed, the checkbox does not seem to control the visibility of the hint as expected. This may indicate that the checkbox state is not connected to the hint display logic.
-
-  ### 3. Score?
+  ### 2. Score?
   So it seems like the score after I attempted all 8 attempts is -30. Still need to further envistage this. 
 
-  ### 4. New Game generator button
+  ### 3. New Game generator button
   After using all eight attempts, the game displayed the message “Game over. Start a new game to try again.” I clicked the New Game generator button expecting it to start a new guessing session. However, it did not appear to reset the game or allow me to begin another round. From my testing, the button seems to work while a session is still active but not after all attempts have been exhausted. Ideally, the button should allow users to start a new game both during and after a completed session.
 
-  ### 5. No Session Renewal after switching from Difficulty levels
+  ### 4. No Session Renewal after switching from Difficulty levels
   I navigated to the settings sidebar where users can choose the difficulty level for the guessing game. After finishing a session in Easy mode, I selected Normal difficulty to start another game. However, the application did not allow me to submit a guess and instead displayed a message asking me to start a new game. This behavior appears related to the issue where the New Game button does not properly reset the session. It seems possible that switching difficulty levels is not creating a new game session.
 
-  ### 6.  Range per Difficulty level is not updated in hint message
+  ### 5.  Range per Difficulty level is not updated in hint message
   While switching between difficulty levels, I noticed that each level displays a different range for the numbers. For example, when I selected Easy, the range shown below the difficulty selector was “Range: 1 to 20.” However, the hint message below the guess input still said “Guess a number between 1 and 100. Attempts left: 4.” This suggests the hint message is not updating to reflect the range associated with the selected difficulty level. I did notice that the number of attempts does update correctly when the difficulty changes.
 
-  ### 7. Attempts mismatch between difficutly level selector and Hint message
+  ### 6. Attempts mismatch between difficutly level selector and Hint message
   While testing different difficulty levels, I noticed a mismatch in the number of attempts displayed. For example, the Hard difficulty indicates “Attempts allowed: 5,” but the hint message below the input shows “Attempts left: 4” before any guess is submitted. The same behavior appears with other difficulty levels as well. For instance, Normal shows “Attempts allowed: 8,” while the hint message displays “Attempts left: 7” immediately when the game starts. This suggests the hint message may be decrementing the attempt counter before the user submits the first guess..
 
-  ### 8. The Guess message hint is misleading II
-  While testing the game, I used the Developer Debug Info feature displayed below the hint message. The debug panel revealed the secret number for the session (for example, Secret: 47). I then entered 50 as my guess, but the hint message responded with “Go HIGHER!”, even though the correct direction should be lower to reach 47. I also noticed the guess history displayed in the debug panel did not record my first guess immediately. The first input only appeared in the history after I submitted a second guess, suggesting the guess tracking may be delayed or not updating on the first entry. 
+  ### 7. Guess History Input Delay
+   I also noticed the guess history displayed in the debug panel did not record my first guess immediately. The first input only appeared in the history after I submitted a second guess, suggesting the guess tracking may be delayed or not updating on the first entry. 
 
-  ### 9. Possible Difficulty Range Incosistency 
+  ### 8. Possible Difficulty Range Incosistency 
   While exploring the difficulty levels, I noticed that Easy uses a range of 1 to 20, Normal uses 1 to 100, and Hard uses 1 to 50. This ordering seemed unusual because the ranges do not progressively increase with difficulty. I initially expected something like Easy: 1–20, Normal: 1–50, and Hard: 1–100 so that the guessing range becomes larger as the difficulty increases. Because of this, I was unsure whether the current configuration is intentional or if the ranges may be incorrectly assigned. This may not necessarily be a bug, but it stood out while testing the different difficulty settings.
 
-  Bugs Fixed: 5 (#6, #1, #4, #5, #7)
+  Bugs Fixed: 7 (#5, #1, #3, #4, #6, #8, #7)
 
 ## 2. How did you use AI as a teammate?
 
