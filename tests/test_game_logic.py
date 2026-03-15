@@ -1,4 +1,4 @@
-from logic_utils import check_guess, get_range_for_difficulty
+from logic_utils import check_guess, get_range_for_difficulty, parse_guess
 
 def test_winning_guess():
     # If the secret is 50 and guess is 50, it should be a win
@@ -38,3 +38,7 @@ def test_get_hard_range():
     assert low == 1
     assert high == 100
 
+def test_parse_guess_returns_int():
+    ok, value, err = parse_guess("50")
+    assert isinstance(value, int)
+    
