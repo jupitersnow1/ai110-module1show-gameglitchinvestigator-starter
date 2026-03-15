@@ -15,6 +15,14 @@ def test_guess_too_low():
     result = check_guess(40, 50)
     assert result[0] == "Too Low"
 
+def test_too_high_hint():
+    result = check_guess(60, 50)
+    assert result[1] == "📉 Go LOWER!"
+
+def test_too_low_hint():
+    result = check_guess(40, 50)
+    assert result[1] == "📈 Go HIGHER!"
+
 def test_get_easy_range():
     low, high = get_range_for_difficulty("Easy")
     assert low == 1
@@ -24,7 +32,7 @@ def test_get_normal_range():
     low, high = get_range_for_difficulty("Normal")
     assert low == 1
     assert high == 50
-    
+
 def test_get_hard_range():
     low, high = get_range_for_difficulty("Hard")
     assert low == 1

@@ -36,12 +36,23 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   ### 9. Possible Difficulty Range Incosistency 
   While exploring the difficulty levels, I noticed that Easy uses a range of 1 to 20, Normal uses 1 to 100, and Hard uses 1 to 50. This ordering seemed unusual because the ranges do not progressively increase with difficulty. I initially expected something like Easy: 1–20, Normal: 1–50, and Hard: 1–100 so that the guessing range becomes larger as the difficulty increases. Because of this, I was unsure whether the current configuration is intentional or if the ranges may be incorrectly assigned. This may not necessarily be a bug, but it stood out while testing the different difficulty settings.
 
+  Bugs Fixed: 2 (#6, #1)
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
   I used Claude Code. 
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+
+  I used Claude Code as an AI teammate while fixing the misleading guess hint bug I documented earlier. While reviewing the check_guess function, I noticed that when guess > secret the function returned "Too High", "Go High", which seemed incorrect because a guess that is too high should instruct the user to go lower, so I updated the return values and tested the app. 
+  
+  During testing I guessed a number close to the secret but lower than it, yet the app still told me to go lower, which led me to investigate further and notice an except TypeError block that converted the guess to a string. 
+  
+  I asked AI why that conversion existed when another function in logic_utils already converts input strings to integers, and it pointed out that app.py was converting the secret value into a string, forcing the workaround. 
+  
+  After confirming this behavior, I fixed the root issue in app.py and removed the unnecessary workaround from logic_utils.py, which AI also explained was an example of a classic code smell where a bug is masked rather than properly fixed.
+
+
 
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
