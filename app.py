@@ -7,6 +7,13 @@ st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 st.title("🎮 Game Glitch Investigator")
 st.caption("An AI-generated guessing game. Something is off.")
 
+def reset_game(low, high):
+    st.session_state.secret = random.randint(low, high)
+    st.session_state.attempts = 1
+    st.session_state.score = 0
+    st.session_state.status = "playing"
+    st.session_state.history = []
+
 st.sidebar.header("Settings")
 
 difficulty = st.sidebar.selectbox(
@@ -42,6 +49,13 @@ if "status" not in st.session_state:
 if "history" not in st.session_state:
     st.session_state.history = []
 
+if "difficulty" not in st.session_state:
+    st.session_state.difficulty = difficulty
+
+if st.session_state.difficulty != difficulty:
+        st.session_state.difficulty = difficulty
+        reset_game(low, high)
+
 st.subheader("Make a guess")
 
 # FIXME: This might be causing the misleading hint message (bug 1)
@@ -73,10 +87,8 @@ with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
-    st.session_state.attempts = 1
-    st.session_state.secret = random.randint(low, high)
+    reset_game(low, high)
     st.success("New game started.")
-    st.session_state.status = "playing"
     st.rerun()
 
 if st.session_state.status != "playing":
