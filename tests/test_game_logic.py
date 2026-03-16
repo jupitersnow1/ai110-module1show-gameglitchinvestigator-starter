@@ -1,4 +1,4 @@
-from logic_utils import check_guess, get_range_for_difficulty, parse_guess, get_attempt_limit
+from logic_utils import check_guess, get_range_for_difficulty, parse_guess, get_attempt_limit, update_score
 
 def test_winning_guess():
     # If the secret is 50 and guess is 50, it should be a win
@@ -38,8 +38,22 @@ def test_get_hard_range():
     assert low == 1
     assert high == 100
 
-def test_parse_guess_returns_int():
+def test_parse_guess_int():
     ok, value, err = parse_guess("50")
+    assert isinstance(value, int)
+
+def test_parse_guess_invalid():
+    ok, value, err = parse_guess("abc")
+    assert ok == False
+    assert value is None
+
+def test_parse_guess_empty():
+    ok, value, err = parse_guess("")
+    assert ok == False
+
+def test_parse_guess_decimal():
+    ok, value, err = parse_guess("3.7")
+    assert value == 3
     assert isinstance(value, int)
     
 def test_get_easy_attempt_limit():
@@ -50,3 +64,19 @@ def test_get_normal_attempt_limit():
 
 def test_get_hard_attempt_limit():
     assert get_attempt_limit("Hard") == 5
+
+def test_update_score_win():
+    result = update_score(0, "Win", 1)
+    assert result > 0
+
+def test_update_score_too_low():
+    result = update_score(10, "Too Low", 1)
+    assert result > 0
+
+def test_update_score_too_high_odd():
+    result = update_score(10, "Too High", 1)
+    assert result == 5
+
+def test_update_score_too_high_even():
+    result = update_score(10, "Too High", 2)
+    assert result == 15

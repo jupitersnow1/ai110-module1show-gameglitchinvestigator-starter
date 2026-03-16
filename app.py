@@ -53,18 +53,11 @@ if st.session_state.difficulty != difficulty:
 
 st.subheader("Make a guess")
 
-# FIXME: This might be causing the misleading hint message (bug 1)
+# FIXED
 st.info(
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
-
-# with st.expander("Developer Debug Info"):
-#     st.write("Secret:", st.session_state.secret)
-#     st.write("Attempts:", st.session_state.attempts)
-#     st.write("Score:", st.session_state.score)
-#     st.write("Difficulty:", difficulty)
-#     st.write("History:", st.session_state.history)
 
 raw_guess = st.text_input(
     "Enter your guess:",
@@ -75,10 +68,10 @@ col1, col2, col3 = st.columns(3)
 with col1:
     submit = st.button("Submit Guess 🚀")
 with col2:
-    #FIXME: New Game button, does it actually generate a new session? (bug 4)
+    #FIXED
     new_game = st.button("New Game 🔁")
 with col3:
-    # FIXME: This looks like enables the hint check box (bug 2)
+    # FIXED
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
@@ -131,7 +124,8 @@ if submit:
                     f"The secret was {st.session_state.secret}. "
                     f"Score: {st.session_state.score}"
                 )
-                
+
+# moved this down here so that it would document the first try after user submits their input        
 with st.expander("Developer Debug Info"):
     st.write("Secret:", st.session_state.secret)
     st.write("Attempts:", st.session_state.attempts)
